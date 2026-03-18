@@ -55,19 +55,9 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <div className="py-6 md:py-10 flex flex-col md:flex-row items-center gap-6">
-              <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center overflow-hidden border border-stone-100">
-                <img 
-                  src="https://storage.googleapis.com/static.antigravity.dev/user-uploads/67d9884860434430156/67d9884860434430156_2.png" 
-                  alt="Logo Aluga Goiás" 
-                  className="w-20 h-20 md:w-28 md:h-28 object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="text-center md:text-left">
-                <h1 className="text-3xl md:text-5xl font-bold text-stone-800">Seja Bem-vindo!</h1>
-                <p className="text-stone-500 text-sm md:text-lg mt-2">Minha casa em Goiânia - Guia Digital</p>
-              </div>
+            <div className="py-6 md:py-10">
+              <h1 className="text-3xl md:text-5xl font-bold text-stone-800">Seja Bem-vindo!</h1>
+              <p className="text-stone-500 text-sm md:text-lg mt-2">Minha casa em Goiânia - Guia Digital</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -612,16 +602,8 @@ export default function App() {
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo Section */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md border border-stone-100 overflow-hidden">
-                <img 
-                  src="https://storage.googleapis.com/static.antigravity.dev/user-uploads/67d9884860434430156/67d9884860434430156_2.png" 
-                  alt="Logo" 
-                  className="w-8 h-8 object-contain"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
+              <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shadow-lg shadow-brand-light overflow-hidden relative">
+                <Home className="text-white" size={24} />
               </div>
               <div className="hidden sm:block">
                 <h1 className="font-bold text-stone-800 leading-tight">Minha Casa</h1>
@@ -685,13 +667,7 @@ export default function App() {
             {renderContent()}
           </AnimatePresence>
 
-            <div className="flex flex-col items-center mt-12 pt-8 border-t border-stone-200">
-              <img 
-                src="https://storage.googleapis.com/static.antigravity.dev/user-uploads/67d9884860434430156/67d9884860434430156_2.png" 
-                alt="Logo Aluga Goiás" 
-                className="w-12 h-12 object-contain opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 mb-4"
-                referrerPolicy="no-referrer"
-              />
+            <footer className="mt-16 pt-8 border-t border-stone-200">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-stone-500 w-full">
                 <div className="space-y-2">
                   <p className="font-bold text-stone-700 uppercase tracking-wider">Informações do Anfitrião</p>
@@ -712,7 +688,7 @@ export default function App() {
                 </div>
               </div>
               <p className="text-[10px] text-stone-400 text-center mt-8">© 2024 Aluga Goiás. Todos os direitos reservados.</p>
-            </div>
+            </footer>
         </main>
       </div>
 
