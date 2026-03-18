@@ -55,9 +55,19 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <div className="py-6 md:py-10">
-              <h1 className="text-3xl md:text-5xl font-bold text-stone-800">Seja Bem-vindo!</h1>
-              <p className="text-stone-500 text-sm md:text-lg mt-2">Minha casa em Goiânia - Guia Digital</p>
+            <div className="py-6 md:py-10 flex flex-col md:flex-row items-center gap-6">
+              <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center overflow-hidden border border-stone-100">
+                <img 
+                  src="https://storage.googleapis.com/static.antigravity.dev/user-uploads/67d9884860434430156/67d9884860434430156_2.png" 
+                  alt="Logo Aluga Goiás" 
+                  className="w-20 h-20 md:w-28 md:h-28 object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="text-center md:text-left">
+                <h1 className="text-3xl md:text-5xl font-bold text-stone-800">Seja Bem-vindo!</h1>
+                <p className="text-stone-500 text-sm md:text-lg mt-2">Minha casa em Goiânia - Guia Digital</p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -596,115 +606,93 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-stone-50">
-      {/* Desktop Sidebar / Mobile Header */}
-      <div className="flex flex-col md:flex-row min-h-screen">
-        {/* Sidebar (Desktop) */}
-        <aside className="hidden md:flex w-64 bg-white border-r border-stone-200 flex-col sticky top-0 h-screen z-50">
-          <div className="p-6 border-b border-stone-100">
+      {/* Top Navigation Bar */}
+      <header className="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 md:h-20">
+            {/* Logo Section */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shadow-lg shadow-brand-light overflow-hidden relative">
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md border border-stone-100 overflow-hidden">
                 <img 
                   src="https://storage.googleapis.com/static.antigravity.dev/user-uploads/67d9884860434430156/67d9884860434430156_2.png" 
                   alt="Logo" 
-                  className="w-8 h-8 object-contain z-10"
+                  className="w-8 h-8 object-contain"
                   referrerPolicy="no-referrer"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
                 />
-                <Home className="absolute text-white/20" size={24} />
               </div>
-              <div>
+              <div className="hidden sm:block">
                 <h1 className="font-bold text-stone-800 leading-tight">Minha Casa</h1>
                 <p className="text-[10px] text-stone-400 uppercase tracking-widest font-semibold">Guia Digital</p>
               </div>
             </div>
-          </div>
-          
-          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-            <SidebarLink 
-              active={activeTab === 'inicio'} 
-              onClick={() => setActiveTab('inicio')} 
-              icon={<Home size={20} />} 
-              label="Início" 
-            />
-            <SidebarLink 
-              active={activeTab === 'checkin'} 
-              onClick={() => setActiveTab('checkin')} 
-              icon={<Key size={20} />} 
-              label="Check-in" 
-            />
-            <SidebarLink 
-              active={activeTab === 'casa'} 
-              onClick={() => setActiveTab('casa')} 
-              icon={<Info size={20} />} 
-              label="A Casa" 
-            />
-            <SidebarLink 
-              active={activeTab === 'regras'} 
-              onClick={() => setActiveTab('regras')} 
-              icon={<FileText size={20} />} 
-              label="Regras" 
-            />
-            <SidebarLink 
-              active={activeTab === 'guia'} 
-              onClick={() => setActiveTab('guia')} 
-              icon={<MapPin size={20} />} 
-              label="Guia Local" 
-            />
-            <SidebarLink 
-              active={activeTab === 'emergencia'} 
-              onClick={() => setActiveTab('emergencia')} 
-              icon={<ShieldAlert size={20} />} 
-              label="Emergência" 
-            />
-            <SidebarLink 
-              active={activeTab === 'feedback'} 
-              onClick={() => setActiveTab('feedback')} 
-              icon={<Star size={20} />} 
-              label="Feedback" 
-            />
-          </nav>
-        </aside>
 
-        {/* Mobile Header */}
-        <header className="md:hidden bg-white border-b border-stone-200 sticky top-0 z-40 px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center shadow-lg shadow-brand-light overflow-hidden relative">
+            {/* Navigation Links */}
+            <nav className="flex items-center gap-1 md:gap-4 overflow-x-auto no-scrollbar py-2">
+              <TopNavLink 
+                active={activeTab === 'inicio'} 
+                onClick={() => setActiveTab('inicio')} 
+                icon={<Home size={18} />} 
+                label="Início" 
+              />
+              <TopNavLink 
+                active={activeTab === 'checkin'} 
+                onClick={() => setActiveTab('checkin')} 
+                icon={<Key size={18} />} 
+                label="Check-in" 
+              />
+              <TopNavLink 
+                active={activeTab === 'casa'} 
+                onClick={() => setActiveTab('casa')} 
+                icon={<Info size={18} />} 
+                label="A Casa" 
+              />
+              <TopNavLink 
+                active={activeTab === 'regras'} 
+                onClick={() => setActiveTab('regras')} 
+                icon={<FileText size={18} />} 
+                label="Regras" 
+              />
+              <TopNavLink 
+                active={activeTab === 'guia'} 
+                onClick={() => setActiveTab('guia')} 
+                icon={<MapPin size={18} />} 
+                label="Guia" 
+              />
+              <TopNavLink 
+                active={activeTab === 'emergencia'} 
+                onClick={() => setActiveTab('emergencia')} 
+                icon={<ShieldAlert size={18} />} 
+                label="SOS" 
+              />
+              <TopNavLink 
+                active={activeTab === 'feedback'} 
+                onClick={() => setActiveTab('feedback')} 
+                icon={<Star size={18} />} 
+                label="Feedback" 
+              />
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-1 max-w-5xl w-full mx-auto px-4 md:px-8 pt-6 md:pt-10 pb-20 md:pb-12">
+          <AnimatePresence mode="wait">
+            {renderContent()}
+          </AnimatePresence>
+
+            <div className="flex flex-col items-center mt-12 pt-8 border-t border-stone-200">
               <img 
                 src="https://storage.googleapis.com/static.antigravity.dev/user-uploads/67d9884860434430156/67d9884860434430156_2.png" 
-                alt="Logo" 
-                className="w-8 h-8 object-contain z-10"
+                alt="Logo Aluga Goiás" 
+                className="w-12 h-12 object-contain opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 mb-4"
                 referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
               />
-              <Home className="absolute text-white/20" size={24} />
-            </div>
-            <div>
-              <h1 className="font-bold text-stone-800 leading-tight">Minha Casa</h1>
-              <p className="text-[10px] text-stone-400 uppercase tracking-widest font-semibold">Guia Digital</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setActiveTab('inicio')}
-            className="p-2 text-stone-400 hover:text-stone-600 transition-colors"
-          >
-            <Info size={20} />
-          </button>
-        </header>
-
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col">
-          <main className="flex-1 max-w-5xl w-full mx-auto px-4 md:px-8 pt-6 md:pt-10 pb-32 md:pb-12">
-            <AnimatePresence mode="wait">
-              {renderContent()}
-            </AnimatePresence>
-
-            {/* Footer Info (Adaptive) */}
-            <footer className="mt-16 pt-8 border-t border-stone-200">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-stone-500">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-stone-500 w-full">
                 <div className="space-y-2">
                   <p className="font-bold text-stone-700 uppercase tracking-wider">Informações do Anfitrião</p>
                   <div className="space-y-1">
@@ -724,9 +712,8 @@ export default function App() {
                 </div>
               </div>
               <p className="text-[10px] text-stone-400 text-center mt-8">© 2024 Aluga Goiás. Todos os direitos reservados.</p>
-            </footer>
-          </main>
-        </div>
+            </div>
+        </main>
       </div>
 
       {/* Floating WhatsApp Button (Adaptive) */}
@@ -734,68 +721,20 @@ export default function App() {
         href={`https://wa.me/${WHATSAPP_NUMBER}?text=Olá! Estou no guia digital e preciso de ajuda.`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 bg-brand text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform active:scale-95 group"
+        className="fixed bottom-8 right-4 md:right-8 z-50 bg-brand text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform active:scale-95 group"
       >
         <MessageSquare size={22} fill="white" />
         <span className="font-bold text-sm md:text-base">Fale com o Anfitrião</span>
       </a>
-
-      {/* Navigation Menu (Mobile Only) */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-stone-200 px-2 py-3 z-40">
-        <div className="max-w-md mx-auto flex justify-between items-center">
-          <NavButton 
-            active={activeTab === 'inicio'} 
-            onClick={() => setActiveTab('inicio')} 
-            icon={<Home size={20} />} 
-            label="Início" 
-          />
-          <NavButton 
-            active={activeTab === 'checkin'} 
-            onClick={() => setActiveTab('checkin')} 
-            icon={<Key size={20} />} 
-            label="Check-in" 
-          />
-          <NavButton 
-            active={activeTab === 'casa'} 
-            onClick={() => setActiveTab('casa')} 
-            icon={<Info size={20} />} 
-            label="A Casa" 
-          />
-          <NavButton 
-            active={activeTab === 'regras'} 
-            onClick={() => setActiveTab('regras')} 
-            icon={<FileText size={20} />} 
-            label="Regras" 
-          />
-          <NavButton 
-            active={activeTab === 'guia'} 
-            onClick={() => setActiveTab('guia')} 
-            icon={<MapPin size={20} />} 
-            label="Guia" 
-          />
-          <NavButton 
-            active={activeTab === 'emergencia'} 
-            onClick={() => setActiveTab('emergencia')} 
-            icon={<ShieldAlert size={20} />} 
-            label="SOS" 
-          />
-          <NavButton 
-            active={activeTab === 'feedback'} 
-            onClick={() => setActiveTab('feedback')} 
-            icon={<Star size={20} />} 
-            label="Avaliar" 
-          />
-        </div>
-      </nav>
     </div>
   );
 }
 
-function SidebarLink({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) {
+function TopNavLink({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) {
   return (
     <button 
       onClick={onClick}
-      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+      className={`flex flex-col md:flex-row items-center gap-1 md:gap-2 px-3 py-2 rounded-xl transition-all whitespace-nowrap ${
         active 
           ? 'bg-brand-light text-brand-dark font-bold shadow-sm' 
           : 'text-stone-500 hover:bg-stone-50 hover:text-stone-700'
@@ -804,31 +743,11 @@ function SidebarLink({ active, onClick, icon, label }: { active: boolean, onClic
       <div className={`${active ? 'text-brand' : 'text-stone-400'}`}>
         {icon}
       </div>
-      <span className="text-sm">{label}</span>
+      <span className="text-[10px] md:text-sm font-semibold">{label}</span>
       {active && (
         <motion.div 
-          layoutId="sidebar-indicator"
-          className="ml-auto w-1.5 h-1.5 bg-brand rounded-full"
-        />
-      )}
-    </button>
-  );
-}
-
-function NavButton({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) {
-  return (
-    <button 
-      onClick={onClick}
-      className={`flex flex-col items-center gap-1 px-2 py-1 transition-colors ${active ? 'text-brand' : 'text-stone-400'}`}
-    >
-      <div className={`transition-transform ${active ? 'scale-110' : 'scale-100'}`}>
-        {icon}
-      </div>
-      <span className="text-[10px] font-bold uppercase tracking-tighter">{label}</span>
-      {active && (
-        <motion.div 
-          layoutId="nav-indicator"
-          className="w-1 h-1 bg-brand rounded-full mt-0.5"
+          layoutId="top-indicator"
+          className="hidden md:block w-1.5 h-1.5 bg-brand rounded-full"
         />
       )}
     </button>
