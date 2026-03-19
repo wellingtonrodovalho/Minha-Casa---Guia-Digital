@@ -32,7 +32,8 @@ import {
   Gift,
   Sparkles,
   Flag,
-  Calendar
+  Calendar,
+  Phone
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -587,63 +588,97 @@ export default function App() {
         );
 
       case 'emergencia':
-        const emergencyNumbers = [
-          { label: 'POLÍCIA MILITAR DO ESTADO DE GOIÁS', number: '190', icon: <Shield className="text-stone-700" size={20} /> },
-          { label: 'SERVIÇO DE ATENDIMENTO MÓVEL DE URGÊNCIA – SAMU', number: '192', icon: <Stethoscope className="text-stone-700" size={20} /> },
-          { label: 'CORPO DE BOMBEIROS', number: '193', icon: <Building2 className="text-stone-700" size={20} /> },
-          { label: 'POLÍCIA FEDERAL', number: '194', icon: <Shield className="text-stone-700" size={20} /> },
-          { label: 'POLÍCIA CIVIL', number: '197', icon: <Shield className="text-stone-700" size={20} /> },
-          { label: 'GUARDA MUNICIPAL', number: '153', icon: <Shield className="text-stone-700" size={20} /> },
-          { label: 'HOSPITAL ESTADUAL DE URGÊNCIAS DE GOIÁS (HUGO)', number: '62 3201-4455', icon: <Stethoscope className="text-stone-700" size={20} /> },
-          { label: 'DEAM – DELEGACIA ESPECIALIZADA NO ATENDIMENTO À MULHER', number: '62 3201-2801', icon: <Shield className="text-stone-700" size={20} /> },
-          { label: 'DEAI – DELEGACIA DO IDOSO', number: '62 3201-1501', icon: <Shield className="text-stone-700" size={20} /> },
-          { label: 'MINISTÉRIO PÚBLICO DO ESTADO DE GOIÁS', number: '62 3243-8000', icon: <Scale className="text-stone-700" size={20} /> },
-          { label: 'MINISTÉRIO PÚBLICO FEDERAL', number: '62 3243-5400', icon: <Scale className="text-stone-700" size={20} /> },
+        const emergencyGroups = [
+          {
+            title: 'Segurança Pública',
+            icon: <Shield className="text-red-600" size={18} />,
+            items: [
+              { label: 'Polícia Militar', number: '190', desc: 'Ocorrências policiais em andamento.', color: 'bg-red-50 text-red-700 border-red-100' },
+              { label: 'Corpo de Bombeiros', number: '193', desc: 'Incêndios e resgates.', color: 'bg-orange-50 text-orange-700 border-orange-100' },
+              { label: 'Guarda Municipal', number: '153', desc: 'Segurança patrimonial e apoio.', color: 'bg-blue-50 text-blue-700 border-blue-100' },
+              { label: 'Polícia Civil', number: '197', desc: 'Denúncias e investigações.', color: 'bg-stone-50 text-stone-700 border-stone-200' },
+            ]
+          },
+          {
+            title: 'Saúde e Urgência',
+            icon: <Stethoscope className="text-emerald-600" size={18} />,
+            items: [
+              { label: 'SAMU', number: '192', desc: 'Urgências médicas e ambulância.', color: 'bg-emerald-50 text-emerald-700 border-emerald-100' },
+              { label: 'Hospital HUGO', number: '62 3201-4455', desc: 'Hospital Estadual de Urgências.', color: 'bg-stone-50 text-stone-700 border-stone-200' },
+            ]
+          },
+          {
+            title: 'Delegacias e Apoio',
+            icon: <Scale className="text-stone-600" size={18} />,
+            items: [
+              { label: 'DEAM (Mulher)', number: '62 3201-2801', desc: 'Atendimento à mulher.', color: 'bg-pink-50 text-pink-700 border-pink-100' },
+              { label: 'DEAI (Idoso)', number: '62 3201-1501', desc: 'Delegacia do Idoso.', color: 'bg-indigo-50 text-indigo-700 border-indigo-100' },
+              { label: 'Ministério Público', number: '62 3243-8000', desc: 'Atendimento ao cidadão.', color: 'bg-stone-50 text-stone-700 border-stone-200' },
+            ]
+          }
         ];
 
         return (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-8"
+            className="space-y-8 pb-10"
           >
             <div className="flex flex-col gap-2">
               <h1 className="text-2xl font-bold text-stone-800">Contatos de Emergência</h1>
-              <p className="text-stone-500 text-sm italic">Clique nos números para realizar uma chamada imediata.</p>
+              <p className="text-stone-500 text-sm italic">Toque no card para realizar uma chamada imediata.</p>
             </div>
             
-            <div className="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden divide-y divide-stone-50">
-              {emergencyNumbers.map((item, idx) => (
-                <a 
-                  key={idx} 
-                  href={`tel:${item.number.replace(/\s/g, '')}`}
-                  className="flex items-center gap-5 p-5 hover:bg-stone-50 transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center shrink-0 group-hover:bg-yellow-200 transition-colors">
-                    {item.icon}
+            <div className="space-y-8">
+              {emergencyGroups.map((group, gIdx) => (
+                <div key={gIdx} className="space-y-4">
+                  <div className="flex items-center gap-2 px-1">
+                    {group.icon}
+                    <h2 className="text-xs font-bold text-stone-400 uppercase tracking-widest">{group.title}</h2>
                   </div>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider">{item.label}</span>
-                    <span className="text-2xl font-black text-stone-700 group-hover:text-stone-900 transition-colors tracking-tight">
-                      {item.number}
-                    </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {group.items.map((item, idx) => (
+                      <a 
+                        key={idx} 
+                        href={`tel:${item.number.replace(/\s/g, '').replace(/-/g, '')}`}
+                        className={`group relative p-5 rounded-2xl border transition-all hover:shadow-md active:scale-[0.98] flex flex-col justify-between overflow-hidden ${item.color}`}
+                      >
+                        <div className="relative z-10">
+                          <div className="flex justify-between items-start mb-1">
+                            <span className="text-[10px] font-bold uppercase tracking-wider opacity-70">{item.label}</span>
+                            <Phone size={14} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+                          </div>
+                          <div className="text-2xl font-black tracking-tighter mb-1">
+                            {item.number}
+                          </div>
+                          <p className="text-[10px] opacity-80 leading-tight pr-8">{item.desc}</p>
+                        </div>
+                        {/* Decorative background number */}
+                        <div className="absolute -bottom-2 -right-2 text-6xl font-black opacity-[0.03] select-none pointer-events-none group-hover:opacity-[0.07] transition-opacity">
+                          {item.number.split(' ')[0]}
+                        </div>
+                      </a>
+                    ))}
                   </div>
-                </a>
+                </div>
               ))}
             </div>
 
-            <div className="bg-brand p-6 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 text-white">
-              <div className="space-y-1 text-center md:text-left">
-                <h3 className="text-xl font-bold">Algum problema no Ap?</h3>
-                <p className="text-brand-light text-sm">Estamos prontos para ajudar a qualquer hora.</p>
+            <div className="bg-brand p-6 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <MessageSquare size={120} />
+              </div>
+              <div className="space-y-1 text-center md:text-left relative z-10">
+                <h3 className="text-xl font-bold">Problemas com a Estadia?</h3>
+                <p className="text-brand-light text-sm">Suporte direto com o anfitrião via WhatsApp.</p>
               </div>
               <a 
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-white text-brand px-6 py-3 rounded-2xl font-bold hover:bg-brand-light transition-all shadow-md"
+                className="relative z-10 flex items-center gap-3 bg-white text-brand px-8 py-4 rounded-2xl font-bold hover:bg-brand-light transition-all shadow-xl active:scale-95"
               >
-                <MessageSquare size={20} /> Suporte via WhatsApp
+                <MessageSquare size={20} /> Falar com Wellington
               </a>
             </div>
           </motion.div>
