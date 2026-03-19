@@ -28,7 +28,11 @@ import {
   Stethoscope,
   Building2,
   Scale,
-  Shield
+  Shield,
+  Gift,
+  Sparkles,
+  Flag,
+  Calendar
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -86,6 +90,39 @@ export default function App() {
                   Sinta-se em casa e qualquer dúvida, estou à disposição via WhatsApp.
                 </p>
               </section>
+
+              <section className="bg-amber-50 p-6 rounded-2xl border border-amber-100 md:col-span-2 shadow-sm">
+                <h2 className="text-xl font-semibold text-amber-800 flex items-center gap-2 mb-4">
+                  <Gift className="text-amber-600" size={24} />
+                  Bônus de Boas-vindas
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-white p-2 rounded-lg shadow-xs">
+                      <Refrigerator className="text-amber-600" size={18} />
+                    </div>
+                    <p className="text-amber-900/80 text-sm">Budweiser e águas com gás na geladeira.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-white p-2 rounded-lg shadow-xs">
+                      <Layout className="text-amber-600" size={18} />
+                    </div>
+                    <p className="text-amber-900/80 text-sm">Bombons na estação de trabalho da sala.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-white p-2 rounded-lg shadow-xs">
+                      <Coffee className="text-amber-600" size={18} />
+                    </div>
+                    <p className="text-amber-900/80 text-sm">Cápsulas da cafeteira na cozinha (em cima do filtro).</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-white p-2 rounded-lg shadow-xs">
+                      <Utensils className="text-amber-600" size={18} />
+                    </div>
+                    <p className="text-amber-900/80 text-sm">Carvão no armário da varanda (porta próxima à churrasqueira) - pode usar à vontade!</p>
+                  </div>
+                </div>
+              </section>
             </div>
           </motion.div>
         );
@@ -108,8 +145,8 @@ export default function App() {
                   <h3 className="font-semibold text-stone-800">Como entrar</h3>
                   <p className="text-stone-600 text-sm mt-1">
                     O acesso é feito via <strong>Box no portão social</strong>. <br />
-                    Senha: <strong>1903</strong> <br />
-                    <span className="text-xs mt-2 block">Dentro do box estão as chaves do portão social, da porta da garagem e o controle remoto do portão eletrônico.</span>
+                    Senha: <strong>2003</strong> <br />
+                    <span className="text-xs mt-2 block">Dentro do box estão as 3 chaves (das duas portas da sala e do portão social) e também o controle remoto do portão da garagem.</span>
                   </p>
                 </div>
               </div>
@@ -154,11 +191,15 @@ export default function App() {
             <h1 className="text-2xl font-bold text-stone-800">A Casa</h1>
             
             <div className="bg-brand-light p-6 rounded-2xl border border-brand-light shadow-sm">
-              <p className="text-brand-dark text-sm leading-relaxed">
+              <p className="text-brand-dark text-sm leading-relaxed mb-3">
                 Este imóvel é de uso pessoal e foi preparado com muito carinho para receber você. 
                 Por isso, pedimos que cuide da casa, móveis e utensílios como se fossem seus. 
                 Cada detalhe foi pensado para garantir conforto e praticidade — contamos com sua 
                 colaboração para manter tudo bem conservado para nós também. Muito obrigado pela compreensão!
+              </p>
+              <p className="text-brand-dark font-semibold text-sm flex items-center gap-2">
+                <Shield size={16} className="text-brand" />
+                Em toda a casa temos alguns objetos pessoais, peço a gentileza de não mexer.
               </p>
             </div>
             
@@ -175,6 +216,7 @@ export default function App() {
                   <li>• 1 Kit Sound Bar TOMATE</li>
                   <li>• 1 Bike para exercícios</li>
                   <li>• 1 Estação de trabalho com Cadeira</li>
+                  <li className="text-red-500 italic font-medium">• 1 Climatizador (estragado)</li>
                   <li className="pt-2 text-stone-500 italic">
                     Os controles da TV, Sound Bar e ventilador estão na mesa de centro.
                   </li>
@@ -283,7 +325,8 @@ export default function App() {
                   Quarto 3
                 </h2>
                 <div className="text-stone-600 text-sm space-y-2">
-                  <p>• 2 Camas de solteiro</p>
+                  <p>• 1 Cama de casal e 1 cama de solteiro</p>
+                  <p>• Extra: 3 colchões de solteiro</p>
                   <p className="pt-2 text-stone-500 italic">
                     Controle da iluminação e ventilador ao lado da porta.
                   </p>
@@ -302,6 +345,7 @@ export default function App() {
                 <ul className="text-stone-600 text-sm space-y-2">
                   <li>• Mesa de madeira maciça com 8 cadeiras</li>
                   <li>• Churrasqueira a carvão</li>
+                  <li className="text-amber-600 font-medium">• Carvão disponível no armário (porta próxima à churrasqueira)</li>
                   <li>• 1 Freezer</li>
                   <li>• Bancada com fogão cooktop 5 bocas e pia</li>
                   <li className="pt-2 text-red-500 italic font-medium">
@@ -407,6 +451,8 @@ export default function App() {
               { name: 'Carne de Sol 1008', desc: 'Recomendo demais, pratos típicos fartos.', maps: 'https://maps.app.goo.gl/PmxSLQpqrD1qWogg7' },
               { name: 'Bar do Bill', desc: 'Simples, mas à noite tem um peixe bem gostoso.', maps: 'https://maps.app.goo.gl/R46rck5eDgFFteC69' },
               { name: 'Pamonha Goiana', desc: 'O clássico de Goiás que não pode faltar.', maps: 'https://maps.app.goo.gl/5FQ7fSrULA4zwFdE7' },
+              { name: 'Território La Pizza', desc: 'Excelente opção de pizzas na região.', maps: 'https://maps.app.goo.gl/rJHSW1FqUHz9jH7y8' },
+              { name: 'Semeando Verdade Panificadora', desc: 'Café e lanches o dia todo, o melhor da região.', maps: 'https://maps.app.goo.gl/taJ5mcYVtjdg1dz38' },
             ]
           },
           {
@@ -421,6 +467,7 @@ export default function App() {
               { name: 'Jardim Botânico', desc: 'Paz e tranquilidade em Goiânia.', maps: 'https://maps.app.goo.gl/FfsScvDAN8nQZsEN8' },
               { name: 'Centro Cultural Oscar Niemeyer', desc: 'Arquitetura icônica e eventos.', maps: 'https://maps.app.goo.gl/7epJkSaCRAjcF55M8' },
               { name: 'Autódromo de Goiânia', desc: 'Palco de grandes eventos automobilísticos.', maps: 'https://maps.app.goo.gl/FRD3L44RZsRD4ZdC6' },
+              { name: 'Feira da Lua', desc: 'Tradicional feira aos sábados com artesanato e comida.', maps: 'https://maps.app.goo.gl/cP3tBtftiVahZMFeA' },
             ]
           }
         ];
@@ -436,6 +483,45 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
+            {/* MOTO GP HIGHLIGHT */}
+            <section className="bg-stone-900 p-6 rounded-2xl border border-stone-800 shadow-xl overflow-hidden relative group">
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Flag size={120} className="text-white" />
+              </div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider animate-pulse">
+                    Evento em Destaque
+                  </span>
+                  <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                    <Flag className="text-red-500" size={20} />
+                    MOTO GP GOIÂNIA
+                  </h2>
+                </div>
+                <p className="text-stone-400 text-sm mb-6 max-w-xl">
+                  Acompanhe todas as informações oficiais, alterações no trânsito e programação completa do evento através dos canais da Prefeitura.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a 
+                    href="https://www.goiania.go.gov.br/wp-content/uploads/2026/03/plano_transito_unificado.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 min-w-[200px] bg-white hover:bg-stone-100 text-stone-900 px-4 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-95"
+                  >
+                    <FileText size={18} /> Plano de Trânsito (PDF)
+                  </a>
+                  <a 
+                    href="https://www.goiania.go.gov.br/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 min-w-[200px] bg-stone-800 hover:bg-stone-700 text-white px-4 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border border-stone-700 transition-all active:scale-95"
+                  >
+                    <ExternalLink size={18} /> Site da Prefeitura
+                  </a>
+                </div>
+              </div>
+            </section>
+
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex flex-col gap-1">
                 <h1 className="text-2xl font-bold text-stone-800">Guia Local</h1>
