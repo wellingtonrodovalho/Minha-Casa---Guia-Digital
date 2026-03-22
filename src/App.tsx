@@ -40,7 +40,7 @@ import { motion, AnimatePresence } from 'motion/react';
 type Tab = 'inicio' | 'checkin' | 'casa' | 'regras' | 'guia' | 'emergencia' | 'feedback';
 
 const ADDRESS = "Rua 1, Quadra 9, Lote 22, Casa 2, Jardim Santo Antônio, CEP 74.853-130, Goiânia-GO";
-const WHATSAPP_NUMBER = "5562985451980"; // Added country code 55
+const WHATSAPP_NUMBER = "5562991514568";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('inicio');
